@@ -193,6 +193,167 @@
         </div>
     </section>
 
+
+    
+    <style>
+        /* CSS Riêng cho bảng Solo Leveling */
+        .sl-container {
+            font-family: 'Courier New', monospace; /* Font chữ kiểu máy tính */
+            margin-bottom: 60px;
+        }
+
+        .system-window {
+            background: rgba(12, 20, 35, 0.95); /* Nền đen xanh trong suốt */
+            border: 2px solid #2979ff; /* Viền xanh neon đặc trưng */
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(41, 121, 255, 0.4); /* Toả sáng xanh */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hiệu ứng quét ngang như scan */
+        .system-window::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(41, 121, 255, 0.1), transparent);
+            animation: scan 3s infinite linear;
+        }
+        @keyframes scan { 0% {left: -100%;} 100% {left: 200%;} }
+
+        .sys-header {
+            color: #2979ff;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 20px;
+            border-bottom: 1px solid #2979ff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #2979ff;
+        }
+
+        .sys-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Chia 2 cột */
+            gap: 20px;
+        }
+
+        .sys-info-line {
+            display: flex; justify-content: space-between; margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .sys-label { color: #94a3b8; }
+        .sys-val { color: #fff; font-weight: bold; }
+        .sys-val.gold { color: #ffd700; text-shadow: 0 0 5px #ffd700; } /* Màu vàng cho Rank */
+
+        /* Thanh kỹ năng (Progress Bar) */
+        .skill-box { margin-bottom: 15px; }
+        .skill-name { color: #fff; font-size: 14px; margin-bottom: 5px; display: block; }
+        .skill-bar-bg {
+            background: #1e293b; height: 10px; width: 100%; border-radius: 5px; overflow: hidden;
+            border: 1px solid #334155;
+        }
+        .skill-bar-fill {
+            height: 100%; background: linear-gradient(90deg, #2979ff, #00d4ff);
+            box-shadow: 0 0 10px #2979ff;
+            width: 0%; /* Mặc định 0 để chạy animation */
+            animation: fillBar 1.5s ease-out forwards;
+        }
+
+        @keyframes fillBar { from {width: 0;} to {width: var(--w);} }
+
+        @media (max-width: 600px) { .sys-grid { grid-template-columns: 1fr; } }
+    </style>
+
+    <section class="sl-container">
+        <h2 class="section-title" style="color:#2979ff !important;">System Status</h2>
+        
+        <div class="system-window">
+            <div class="sys-header">
+                <i class="fas fa-exclamation-triangle"></i> PLAYER PROFILE
+            </div>
+
+            <div class="sys-grid">
+                <div class="sys-col">
+                    <div class="sys-info-line">
+                        <span class="sys-label">Name:</span>
+                        <span class="sys-val">Nguyễn Lê Chí Tường</span>
+                    </div>
+                    <div class="sys-info-line">
+                        <span class="sys-label">Job:</span>
+                        <span class="sys-val">Shadow Developer (Năm 1)</span>
+                    </div>
+                    <div class="sys-info-line">
+                        <span class="sys-label">Title:</span>
+                        <span class="sys-val">Lazy Coder</span>
+                    </div>
+                    <div class="sys-info-line">
+                        <span class="sys-label">Level:</span>
+                        <span class="sys-val">19 (Exp: 25.12%)</span>
+                    </div>
+                    <div class="sys-info-line">
+                        <span class="sys-label">Fatigue:</span>
+                        <span class="sys-val">0 (Đang sung sức)</span>
+                    </div>
+                </div>
+
+                <div class="sys-col">
+                    <div class="sys-info-line">
+                        <span class="sys-label">Strength (Code):</span>
+                        <span class="sys-val">120</span>
+                    </div>
+                    <div class="sys-info-line">
+                        <span class="sys-label">Intelligence (Math):</span>
+                        <span class="sys-val">150</span>
+                    </div>
+                    <div class="sys-info-line">
+                        <span class="sys-label">Agility (Deadline):</span>
+                        <span class="sys-val">99</span>
+                    </div>
+                    <div class="sys-info-line">
+                        <span class="sys-label">Luck (Gacha):</span>
+                        <span class="sys-val">High</span>
+                    </div>
+                    <div class="sys-info-line" style="border: 1px solid #ffd700; padding: 5px; border-radius: 5px; margin-top: 5px;">
+                        <span class="sys-label" style="color:#ffd700">CHARISMA (Đẹp Trai):</span>
+                        <span class="sys-val gold">MAX (∞)</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px dashed #2979ff; margin: 20px 0; opacity: 0.5;">
+
+            <div class="sys-header" style="font-size: 16px; margin-bottom: 15px;">
+                ACTIVE SKILLS
+            </div>
+
+            <div class="skill-box">
+                <span class="skill-name">Language: English (IELTS 7.5) [Rank S]</span>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w: 90%;"></div></div>
+            </div>
+
+            <div class="skill-box">
+                <span class="skill-name">Technique: C++ / Algorithms [Rank A]</span>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w: 85%;"></div></div>
+            </div>
+
+            <div class="skill-box">
+                <span class="skill-name">Strategy: Yu-Gi-Oh! (Branded Deck) [Rank A+]</span>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w: 88%;"></div></div>
+            </div>
+
+            <div class="skill-box">
+                <span class="skill-name">Crafting: Game Development [Rank B]</span>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w: 60%;"></div></div>
+            </div>
+            
+            <div style="text-align: right; font-size: 12px; color: #2979ff; margin-top: 10px; animation: blink 1s infinite;">
+                SYSTEM MESSAGE: You have unread notifications from "Deadline".
+            </div>
+        </div>
+    </section>
+
+    
     <section>
         <h2 class="section-title">Special Mentions</h2>
         <div class="review-grid">
